@@ -8,7 +8,30 @@ const dates = [
 ];
 
 // TODO: Buatlah fungsi createDate
-const createDate = null;
+const createDate = (datetimes, position = null) => {
+
+  if(Array.isArray(datetimes)){
+
+    const pos = parseInt(position);
+
+    if(pos != null && pos < datetimes.length){
+      let epochTime = Math.floor(Date.parse(datetimes[pos]) / 1000);
+      return epochTime.toString();
+    }
+
+    let epochTimeArray = [];
+
+    for(let i = 0; i < datetimes.length; i++){
+      epochTimeArray.push(Math.floor(Date.parse(datetimes[i]) / 1000));
+      epochTimeArray.sort();
+    }
+
+    return epochTimeArray.join("-").toString();
+    
+  }
+
+  return "Invalid Parameters";
+};
 
 // ! JANGAN DIMODIFIKASI
 (() => {
